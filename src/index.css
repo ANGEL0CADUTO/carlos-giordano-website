@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Inter Tight", sans-serif;
+
+  --color-ink: #111111;
+  --color-paper: #fcfcfc;
+  --color-stone: #e5e5e5;
+  --color-muted: #888888;
+}
+
+html,
+body,
+#root {
+  min-width: 0;
+  width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hero-frame-width {
+  width: 100%;
+  max-width: min(94vw, clamp(13rem, calc((100svh - 16.25rem) * 1.333), 1500px));
+}
+
+.hero-frame-width-narrow {
+  width: 100%;
+  max-width: min(80vw, clamp(11.5rem, calc((100svh - 14.5rem) * 0.8), 760px));
+}
+
+.hero-slide-stage {
+  --hero-portrait-stage-width: min(80vw, clamp(11.5rem, calc((100svh - 14.5rem) * 0.8), 760px));
+  --hero-wide-stage-width: min(94vw, clamp(13rem, calc((100svh - 16.25rem) * 1.333), 1500px));
+  --hero-caption-reserve: clamp(8.25rem, 12svh, 9.5rem);
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.hero-slide-stage::before,
+.hero-slide-stage::after {
+  content: "";
+  display: block;
+  box-sizing: content-box;
+  grid-area: 1 / 1;
+  max-width: 100%;
+  padding-bottom: var(--hero-caption-reserve);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hero-slide-stage::before {
+  width: var(--hero-portrait-stage-width);
+  aspect-ratio: 4 / 5;
+}
+
+.hero-slide-stage::after {
+  width: var(--hero-wide-stage-width);
+  aspect-ratio: 4 / 3;
+}
+
+.hero-slide-stage > * {
+  grid-area: 1 / 1;
+}
+
+@supports (height: 100dvh) {
+  .hero-frame-width {
+    max-width: min(94vw, clamp(13rem, calc((100dvh - 16.25rem) * 1.333), 1500px));
+  }
+
+  .hero-frame-width-narrow {
+    max-width: min(80vw, clamp(11.5rem, calc((100dvh - 14.5rem) * 0.8), 760px));
+  }
+
+  .hero-slide-stage {
+    --hero-portrait-stage-width: min(80vw, clamp(11.5rem, calc((100dvh - 14.5rem) * 0.8), 760px));
+    --hero-wide-stage-width: min(94vw, clamp(13rem, calc((100dvh - 16.25rem) * 1.333), 1500px));
+  }
+}
+
+.works-overview-header,
+.works-overview-grid {
+  width: min(100%, calc(var(--works-card-width, 18rem) * 3 + 3.5rem));
+}
+
+.works-overview-grid {
+  --works-card-width: min(100%, 20rem);
+}
+
+.works-overview-card {
+  max-width: min(100%, 20rem);
+}
+
+@media (min-width: 768px) {
+  .works-overview-grid {
+    --works-card-width: clamp(11rem, min(28vw, calc(34svh - 5.1rem)), 21rem);
+    grid-template-columns: repeat(3, minmax(0, var(--works-card-width)));
+  }
+
+  .works-overview-card {
+    max-width: var(--works-card-width);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-frame-width {
+    max-width: min(94vw, max(20rem, calc(145svh - 24.8rem)), 1640px);
+  }
+
+  .hero-frame-width-narrow {
+    max-width: min(58vw, max(18rem, calc((100svh - 16.25rem) * 0.8)), 820px);
+  }
+
+  .hero-slide-stage {
+    --hero-portrait-stage-width: min(58vw, max(18rem, calc((100svh - 16.25rem) * 0.8)), 820px);
+    --hero-wide-stage-width: min(94vw, max(20rem, calc(145svh - 24.8rem)), 1640px);
+    --hero-caption-reserve: clamp(7.5rem, 10svh, 9rem);
+  }
+
+  .hero-slide-stage::after {
+    aspect-ratio: 16 / 10;
+  }
+
+  @supports (height: 100dvh) {
+    .hero-frame-width {
+      max-width: min(94vw, max(20rem, calc(145dvh - 24.8rem)), 1640px);
+    }
+
+    .hero-frame-width-narrow {
+      max-width: min(58vw, max(18rem, calc((100dvh - 16.25rem) * 0.8)), 820px);
+    }
+
+    .hero-slide-stage {
+      --hero-portrait-stage-width: min(58vw, max(18rem, calc((100dvh - 16.25rem) * 0.8)), 820px);
+      --hero-wide-stage-width: min(94vw, max(20rem, calc(145dvh - 24.8rem)), 1640px);
+    }
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-frame-width {
+    max-width: min(94vw, max(20rem, calc(177.778svh - 27.556rem)), 1640px);
+  }
+
+  .hero-slide-stage {
+    --hero-wide-stage-width: min(94vw, max(20rem, calc(177.778svh - 27.556rem)), 1640px);
+  }
+
+  .hero-slide-stage::after {
+    aspect-ratio: 16 / 9;
+  }
+
+  @supports (height: 100dvh) {
+    .hero-frame-width {
+      max-width: min(94vw, max(20rem, calc(177.778dvh - 27.556rem)), 1640px);
+    }
+
+    .hero-slide-stage {
+      --hero-wide-stage-width: min(94vw, max(20rem, calc(177.778dvh - 27.556rem)), 1640px);
+    }
+  }
+}
+
+/* Hide scrollbar for clean aesthetic but allow scrolling */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+@media (min-width: 1024px) {
+  html.home-page-scrollbar,
+  body.home-page-scrollbar,
+  html.artwork-gallery-scrollbar,
+  body.artwork-gallery-scrollbar,
+  html.exhibitions-scrollbar,
+  body.exhibitions-scrollbar {
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(17, 17, 17, 0.45) transparent;
+  }
+
+  html.home-page-scrollbar::-webkit-scrollbar,
+  body.home-page-scrollbar::-webkit-scrollbar,
+  html.artwork-gallery-scrollbar::-webkit-scrollbar,
+  body.artwork-gallery-scrollbar::-webkit-scrollbar,
+  html.exhibitions-scrollbar::-webkit-scrollbar,
+  body.exhibitions-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    background: transparent;
+  }
+
+  html.home-page-scrollbar::-webkit-scrollbar-thumb,
+  body.home-page-scrollbar::-webkit-scrollbar-thumb,
+  html.artwork-gallery-scrollbar::-webkit-scrollbar-thumb,
+  body.artwork-gallery-scrollbar::-webkit-scrollbar-thumb,
+  html.exhibitions-scrollbar::-webkit-scrollbar-thumb,
+  body.exhibitions-scrollbar::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 9999px;
+    background-color: rgba(17, 17, 17, 0.35);
+    background-clip: content-box;
+  }
+
+  html.home-page-scrollbar::-webkit-scrollbar-thumb:hover,
+  body.home-page-scrollbar::-webkit-scrollbar-thumb:hover,
+  html.artwork-gallery-scrollbar::-webkit-scrollbar-thumb:hover,
+  body.artwork-gallery-scrollbar::-webkit-scrollbar-thumb:hover,
+  html.exhibitions-scrollbar::-webkit-scrollbar-thumb:hover,
+  body.exhibitions-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(17, 17, 17, 0.5);
+  }
+}
+
+/* --- IUBENDA STEALTH MODE: Hide Floating Widget --- */
+body > div.iubenda-cs-preferences-link,
+body > a.iubenda-cs-preferences-link,
+body > button.iubenda-cs-preferences-link,
+.iubenda-cs-floating-button,
+#iub-floating-widget,
+div[id^="iubFloatingBtn"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  z-index: -9999 !important;
+}
