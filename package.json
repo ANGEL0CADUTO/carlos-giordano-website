@@ -13,7 +13,7 @@
     "verify:seo": "node scripts/verify-seo.mjs"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
+    "@tailwindcss/vite": "^4.3.3",
     "@vercel/functions": "^3.6.0",
     "@vitejs/plugin-react": "^5.0.4",
     "clsx": "^2.1.1",
